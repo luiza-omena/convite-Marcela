@@ -4,65 +4,65 @@ import { assetUrl } from '@/lib/utils';
 
 const milestones = [
   {
-    year: '2004',
-    title: 'O começo de tudo',
-    description: 'Chegou ao mundo pronta pra conquistar tudo (ou pelo menos tentar)',
-    image: assetUrl('/timeline/nasceu.png'),
+    year: '2011',
+    title: 'Foi aqui que tudo começou',
+    description: 'cheguei ao mundo pronta pra viver com muita intensidade.',
+    image: assetUrl('/timeline/comeco.jpeg'),
   },
   {
     year: '',
-    title: 'Começou a tentar andar',
-    description: 'Os primeiros passos... e tombos. Muitos tombos.',
-    image: assetUrl('/timeline/andar.png'),
+    title: 'Curiosa desde sempre',
+    description: 'observando tudo e aprontando um pouquinho também.',
+    image: assetUrl('/timeline/curiosa.jpeg'),
   },
   {
     year: '',
-    title: 'Descobriu que tinha a melhor mãe do mundo',
-    description: 'Que faz de tudo por ela desde o início',
-    image: assetUrl('/timeline/mae.png'),
+    title: 'Chegaram meus irmãos',
+    description: 'e meu mundo ficou ainda mais completo',
+    image: assetUrl('/timeline/irmaos.jpeg'),
   },
   {
     year: '',
-    title: 'Desde sempre amando os animais',
-    description: 'O amor por bichinhos veio antes de aprender a falar direito',
-    image: assetUrl('/timeline/animais.png'),
+    title: 'Nosso maior presente',
+    description: 'ter você como a melhor mãe do mundo',
+    image: assetUrl('/timeline/mae.jpeg'),
   },
   {
     year: '',
-    title: 'Tentou a carreira de modelo juvenil que não decolou',
-    description: 'Pelo menos as fotos ficaram fofas pra memória',
-    image: assetUrl('/timeline/modelo.png'),
+    title: 'Tentei carreira de bailarina',
+    description: 'e até que eu tava arrasando',
+    image: assetUrl('/timeline/bailarina.jpeg'),
   },
   {
     year: '',
-    title: 'Aproveitou e amou muito a vida até agora',
-    description: 'Com pessoas incríveis, que trouxeram muito amor em cada momento.',
-    image: assetUrl('/timeline/pessoas.png'),
+    title: 'Minha base, meu tudo',
+    description: 'com eles, qualquer momento vira festa',
+    image: assetUrl('/timeline/base.jpeg'),
   },
   {
     year: '',
-    title: 'Decidiu o que queria da vida',
-    description: 'e não se arrependeu nem um pouco dessa escolha',
-    image: assetUrl('/timeline/curso.png'),
+    title: 'Curtindo e amando cada momento',
+    description: 'com quem faz tudo ser ainda melhor',
+    image: assetUrl('/timeline/curtindo.jpeg'),
   },
   {
     year: '',
-    title: 'Conheceu pessoas incríveis',
-    description: 'que viraram rotina e vão tornar a vida mais especial sempre',
-    image: assetUrl('/timeline/novos_amigos.png'),
+    title: 'Colecionando conquistas',
+    description: 'porque sonhar grande sempre fez parte de mim',
+    image: assetUrl('/timeline/conquistas.jpeg'),
   },
   {
     year: '',
-    title: 'Conheceu o amor',
-    description: 'que transformou os dias comuns nos mais especiais',
-    image: assetUrl('/timeline/amor.png'),
+    title: 'Entre notas e sentimentos',
+    description: 'aprendi a transformar emoção em música',
+    image: assetUrl('/timeline/notas.jpeg'),
   },
 
   {
     year: '2026',
-    title: 'E finalmente tá se formando em Ciência da Computação e completando 22 anos!',
-    description: 'Agora é continuar crescendo e amando a vida cada vez mais!',
-    image: assetUrl('/timeline/2026.png'),
+    title: 'E agora… estou prestes a completar 15 anos',
+    description: 'pronta pra viver tudo que ainda está por vir',
+    image: assetUrl('/timeline/15.jpeg'),
   },
 ];
 
@@ -74,14 +74,13 @@ export default function Timeline() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="text-3xl sm:text-4xl font-bold text-center mb-16 font-timeline bg-clip-text text-transparent"
-        style={{ backgroundImage: 'linear-gradient(to right, #CB8CC2, #3794CF, #077BC6)' }}
+        style={{ backgroundImage: 'linear-gradient(to right, #fcd34d, #a78bfa, #818cf8)' }}
       >
-        Vida de Lu
+        Trajetória da Marcela
       </motion.h2>
 
       <div className="relative">
-        {/* Linha fina no centro: no celular também, conectando os itens conforme entram */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-px sm:w-px bg-gradient-to-b from-[#CB8CC2]/50 via-[#7BB1D9]/30 to-transparent -translate-x-1/2" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px sm:w-px bg-gradient-to-b from-amber-200/40 via-violet-400/30 to-transparent -translate-x-1/2" />
         {milestones.map((item, i) => (
           <TimelineItem key={`${item.title}-${i}`} item={item} index={i} />
         ))}

@@ -1,9 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect, useMemo, type FormEvent } from "react";
 import { getAllRsvps, type RsvpDoc } from "@/lib/rsvpFirestore";
 
-const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN ?? "";
 const PAGE_SIZE = 20;
+const ADMIN_USER = "Marcela";
+const ADMIN_PASSWORD = "MarcelaXV123";
+const AUTH_STORAGE_KEY = "marcela-lista-convidados-auth";
 
 interface PersonRow {
   num: number;
@@ -54,15 +55,27 @@ function normalize(s: string) {
 }
 
 export default function ListaConvidados() {
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("s") ?? "";
-  const isAuthorized = ADMIN_TOKEN && token === ADMIN_TOKEN;
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   const [rsvps, setRsvps] = useState<RsvpDoc[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    try {
+      const savedAuth = sessionStorage.getItem(AUTH_STORAGE_KEY);
+      if (savedAuth === "ok") {
+        setIsAuthorized(true);
+      }
+    } catch {
+      // ignore sessionStorage errors
+    }
+  }, []);
 
   useEffect(() => {
     if (!isAuthorized) return;
@@ -101,37 +114,69 @@ export default function ListaConvidados() {
     setPage(0);
   }, [search]);
 
-  if (!ADMIN_TOKEN) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-6">
-        <div className="rounded-2xl p-8 max-w-md text-center bg-white/[0.04] border border-white/[0.06]">
-          <p className="text-amber-400 font-mono text-sm mb-2">
-            Configuração necessária
-          </p>
-          <p className="opacity-70 text-sm">
-            Adicione <code className="text-[#7BB1D9]">VITE_ADMIN_TOKEN</code> no
-            seu arquivo <code className="text-[#7BB1D9]">.env</code> e reinicie o
-            servidor.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   if (!isAuthorized) {
+    const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const validUser = username.trim() === ADMIN_USER;
+      const validPassword = password === ADMIN_PASSWORD;
+
+      if (!validUser || !validPassword) {
+        setAuthError("Usuário ou senha inválidos.");
+        return;
+      }
+
+      setAuthError(null);
+      setIsAuthorized(true);
+      try {
+        sessionStorage.setItem(AUTH_STORAGE_KEY, "ok");
+      } catch {
+        // ignore sessionStorage errors
+      }
+    };
+
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-6">
-        <div className="rounded-2xl p-8 max-w-md text-center bg-white/[0.04] border border-white/[0.06]">
+        <form
+          onSubmit={handleLogin}
+          className="rounded-2xl p-8 w-full max-w-md bg-white/[0.04] border border-white/[0.06]"
+        >
           <p className="text-[#CB8CC2] font-modern font-bold text-xl mb-4">
             Acesso restrito
           </p>
-          <p className="opacity-60 text-sm">
-            Use o link correto com o token de acesso.
+          <p className="opacity-60 text-sm mb-5">
+            Faça login para visualizar a lista de convidados.
           </p>
-          <p className="font-mono text-xs mt-6 opacity-40">
-            Ex: /lista-convidados?s=seu_token
-          </p>
-        </div>
+
+          <div className="space-y-3">
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Usuário"
+              autoComplete="username"
+              className="w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#3794CF]/50"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Senha"
+              autoComplete="current-password"
+              className="w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#3794CF]/50"
+            />
+          </div>
+
+          {authError && (
+            <p className="text-red-300 text-xs mt-3 font-mono">{authError}</p>
+          )}
+
+          <button
+            type="submit"
+            className="mt-5 w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white bg-[#3794CF]/70 hover:bg-[#3794CF]/85 transition-colors"
+          >
+            Entrar
+          </button>
+        </form>
       </div>
     );
   }

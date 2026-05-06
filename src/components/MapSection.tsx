@@ -16,12 +16,13 @@ export default function MapSection() {
         <div className="mb-8 text-center">
           <h2 className="font-modern text-3xl sm:text-4xl font-bold leading-tight">
             <span
-              className="text-[#3794CF]"
-              style={{ textShadow: "0 0 24px rgba(55,148,207,0.35)" }}
+              className="text-violet-300"
+              style={{ textShadow: "0 0 28px rgba(167,139,250,0.45)" }}
             >
               Localização
             </span>
           </h2>
+          <div className="galaxy-divider" aria-hidden />
         </div>
 
 
@@ -30,17 +31,17 @@ export default function MapSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.08 }}
-          className="rounded-3xl overflow-hidden"
+          className="galaxy-panel galaxy-panel-comet"
           style={{
             background: "hsla(230, 25%, 12%, 0.62)",
             backdropFilter: "blur(18px)",
             border: "1px solid transparent",
             backgroundImage:
-              "linear-gradient(hsla(230, 25%, 12%, 0.62), hsla(230, 25%, 12%, 0.62)), linear-gradient(135deg, rgba(203,140,194,0.85) 0%, rgba(55,148,207,0.85) 55%, rgba(7,123,198,0.85) 100%)",
+              "linear-gradient(hsla(250, 28%, 11%, 0.72), hsla(250, 28%, 11%, 0.72)), linear-gradient(135deg, rgba(251,191,36,0.35) 0%, rgba(139,92,246,0.55) 48%, rgba(79,70,229,0.65) 100%)",
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
             boxShadow:
-              "0 18px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(123,177,217,0.08)",
+              "0 18px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(167,139,250,0.12)",
           }}
         >
           {/* Info header */}
@@ -48,15 +49,15 @@ export default function MapSection() {
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="font-sans text-lg sm:text-xl text-white leading-tight mb-1">
-                  Rua Antônio Vitrúvio, 49
+                  Rua Poeta Luiz Raimundo Batista de Carvalho, 225
                 </p>
                 <p className="font-sans text-sm text-white/80">
-                  Poço da Panela, Recife
+                  Jardim Oceania
                 </p>
               </div>
 
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Rua+Ant%C3%B4nio+Vitr%C3%BAvio%2C+49+-+Po%C3%A7o+da+Panela%2C+Recife+-+PE"
+                href="https://maps.app.goo.gl/QATbRk6rJASV7hFz9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-sans text-white
@@ -104,13 +105,13 @@ export default function MapSection() {
 
           {/* Map */}
           <div
-            className="w-full h-[260px] sm:h-[340px] border-t border-[#3794CF]/20"
+            className="w-full h-[260px] sm:h-[340px] border-t border-violet-500/25"
             style={{
-              boxShadow: "inset 0 1px 0 rgba(203,140,194,0.14)",
+              boxShadow: "inset 0 1px 0 rgba(251,191,36,0.12)",
             }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.639587699286!2d-34.92789038905483!3d-8.036043691957492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab190a5198bb61%3A0x7047e6d46330725c!2sR.%20Ant%C3%B4nio%20Vitr%C3%BAvio%2C%2049%20-%20Po%C3%A7o%20da%20Panela%2C%20Recife%20-%20PE%2C%2052061-210!5e0!3m2!1sen!2sbr!4v1770926741118!5m2!1sen!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.380056765739!2d-34.836057525001905!3d-7.081862592921046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7acdda494b77b79%3A0x7b6bafefdaa0f86a!2sRua%20Poeta%20Luiz%20Raimundo%20Batista%20de%20Carvalho%2C%20225%20-%20Jardim%20Oceania%2C%20Jo%C3%A3o%20Pessoa%20-%20PB%2C%2058037-530!5e0!3m2!1spt-BR!2sbr!4v1778034629352!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{

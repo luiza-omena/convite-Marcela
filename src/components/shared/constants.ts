@@ -1,15 +1,14 @@
-// Shared constants used across multiple components
-// Paleta: azuis (#A6CEE8, #7BB1D9, #3794CF, #077BC6, #0668BC) + lilases (#CBBACE, #CB8CC2)
+// Shared constants — tema astronomia (índigos, violetas, dourado)
 import { assetUrl } from "@/lib/utils";
 
 export const PALETTE = {
-  bluePastel: '#A6CEE8',
-  blueMedium: '#7BB1D9',
-  blueVivid: '#3794CF',
-  blueIntense: '#077BC6',
-  blueDeep: '#0668BC',
-  lilacLight: '#CBBACE',
-  lilacMedium: '#CB8CC2',
+  bluePastel: '#c4b5fd',
+  blueMedium: '#a78bfa',
+  blueVivid: '#8b5cf6',
+  blueIntense: '#7c3aed',
+  blueDeep: '#4c1d95',
+  lilacLight: '#fcd34d',
+  lilacMedium: '#f59e0b',
 } as const;
 
 export const THEME = {
@@ -34,10 +33,10 @@ export const THEME = {
   ink: '#101114',
 };
 
-export const STICKER_EMOJIS = ['⭐', '🎉', '💜', '🔥', '🚀'];
+export const STICKER_EMOJIS = ['✦', '✧', '⋆', '✶', '·'];
 
 export const MARQUEE_ITEMS = [
-  'FORMATURA', 'CIÊNCIA DA COMPUTAÇÃO', 'ANIVERSÁRIO', '2026', 'LUIZA OMENA',
+  'MARCELA ALVES', '15 ANOS', 'DEBUTEI', '2026', 'XV',
 ];
 
 /** Fotos de todas as pastas em public, exceto banguela e assets (para o carrossel) */
@@ -97,10 +96,8 @@ export const CAROUSEL_PHOTOS = [
   '/timeline/pessoas.png',
 ].map(assetUrl);
 
-export const TOTAL_EGGS = 10;
-
 /** Chave e tipo para persistir confirmação de presença (uma vez só) */
-export const RSVP_STORAGE_KEY = 'graduation-bytes-rsvp';
+export const RSVP_STORAGE_KEY = 'marcela-15anos-rsvp-v1';
 
 export interface RsvpStorage {
   confirmed: boolean;

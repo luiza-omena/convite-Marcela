@@ -25,7 +25,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
       transition={{ duration: 0.6, delay: 0.1 }}
     >
       <div className={`flex-1 ${isLeft ? 'sm:text-right' : 'sm:text-left'} text-center`}>
-        <div className="glass rounded-2xl p-5 sm:p-6 inline-block overflow-hidden">
+        <div className="glass galaxy-panel galaxy-panel-comet p-5 sm:p-6 inline-block overflow-hidden">
           <img
             src={item.image}
             alt={item.title}
@@ -40,7 +40,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
       </div>
 
       <div className="hidden sm:flex flex-col items-center">
-        <div className="w-4 h-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(135deg, #CB8CC2, #3794CF)', boxShadow: '0 0 12px rgba(55,148,207,0.3)' }} />
+        <div className="w-4 h-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(135deg, #fcd34d, #a78bfa)', boxShadow: '0 0 14px rgba(167,139,250,0.45)' }} />
       </div>
 
       <div className="flex-1 hidden sm:block" />

@@ -3,7 +3,7 @@ export function ConfettiOverlay() {
     left: `${Math.random() * 100}%`,
     width: `${Math.random() * 8 + 4}px`,
     height: `${Math.random() * 8 + 4}px`,
-    background: ['#A6CEE8', '#CB8CC2', '#3794CF', '#CBBACE', '#7BB1D9', '#077BC6'][i % 6],
+    background: ['#c4b5fd', '#fcd34d', '#a78bfa', '#818cf8', '#f472b6', '#38bdf8'][i % 6],
     borderRadius: Math.random() > 0.5 ? '50%' : '2px',
     animationDuration: `${Math.random() * 2 + 2}s`,
     animationDelay: `${Math.random() * 0.5}s`,

@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import Preloader from "@/components/Preloader";
-import RetroDesktop from "@/components/RetroDesktop";
-import GlitchTransition from "@/components/GlitchTransition";
 import ModernSection from "@/components/ModernSection";
-import LearnMore from "@/components/LearnMore";
 
-type Phase = "loading" | "retro" | "learnMore" | "transition" | "modern";
+type Phase = "loading" | "modern";
 
 const Index = () => {
-  const [phase, setPhase] = useState<Phase>("transition");
+  const [phase, setPhase] = useState<Phase>("loading");
 
   useEffect(() => {
-    if (phase === "modern") {
+    if (phase === "loading" || phase === "modern") {
       document.documentElement.classList.add("dark");
-      document.body.style.background = "#050d18";
+      document.body.style.background =
+        phase === "loading"
+          ? "radial-gradient(ellipse 120% 80% at 50% 20%, #1e1b4b 0%, #0f0a1a 45%, #030712 100%)"
+          : "#050816";
       return () => {
         document.documentElement.classList.remove("dark");
         document.body.style.background = "";
@@ -27,41 +27,10 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden">
       <AnimatePresence mode="wait">
         {phase === "loading" && (
-          <Preloader key="preloader" onComplete={() => setPhase("retro")} />
+          <Preloader key="preloader" onComplete={() => setPhase("modern")} />
         )}
 
-        {phase === "retro" && (
-          <RetroDesktop
-            key="retro"
-            onEvolve={() => setPhase("transition")}
-            onBackToLoader={() => setPhase("loading")}
-            onLearnMore={() => setPhase("learnMore")}
-            learnMoreHref="/convite" // opcional (se você tiver rota)
-          />
-        )}
-
-        {phase === "learnMore" && (
-          <LearnMore
-            key="learnMore"
-            onBack={() => setPhase("retro")}
-            // opcional: se quiser permitir evoluir direto daqui também
-            // onEvolve={() => setPhase('transition')}
-          />
-        )}
-
-        {phase === "transition" && (
-          <GlitchTransition
-            key="transition"
-            onComplete={() => setPhase("modern")}
-          />
-        )}
-
-        {phase === "modern" && (
-          <ModernSection
-            key="modern"
-            onBackToRetro={() => setPhase("loading")}
-          />
-        )}
+        {phase === "modern" && <ModernSection key="modern" />}
       </AnimatePresence>
     </div>
   );

@@ -1,13 +1,8 @@
 import { CAROUSEL_PHOTOS } from "@/components/shared/constants";
 import { assetUrl } from "@/lib/utils";
 
-/** Imagens do Hero (balões, chapéus, info) */
-const HERO_IMAGES = [
-  "/assets/22_balloon.png",
-  "/assets/chapeu_festa.png",
-  "/assets/chapeu_formatura.png",
-  "/assets/info_festa.png",
-].map(assetUrl);
+/** Hero (trilha do player) */
+const HERO_IMAGES = ["/assets/aba_music.png"].map(assetUrl);
 
 /** Galeria Retro (banguela + amigos) */
 const RETRO_GALLERY_IMAGES = [

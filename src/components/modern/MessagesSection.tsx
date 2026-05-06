@@ -187,25 +187,26 @@ export function MessagesSection({ rsvpVersion = 0 }: MessagesSectionProps) {
   return (
     <section className="py-20 px-6 relative">
       <div className="max-w-3xl mx-auto">
-        <p className="font-mono text-xs tracking-[4px] uppercase text-[#7BB1D9] mb-4 text-center">
+        <p className="font-mono text-xs tracking-[4px] uppercase text-violet-300 mb-4 text-center">
           Quadro de recados
         </p>
         <h2 className="font-modern text-3xl sm:text-4xl font-bold mb-3 leading-tight text-center">
           Deixe seu recado{' '}
           <span
-            className="text-[#3794CF]"
-            style={{ textShadow: '0 0 24px rgba(55,148,207,0.4)' }}
+            className="text-violet-400"
+            style={{ textShadow: '0 0 28px rgba(167,139,250,0.45)' }}
           >
-            pra Lu
+            pra Ma
           </span>
         </h2>
+        <div className="galaxy-divider mb-6" aria-hidden />
 
         <p className="text-center text-white/50 text-sm mb-10 font-timeline max-w-md mx-auto">
           Veja as mensagens que os convidados deixaram no mural e deixe a sua também.
         </p>
 
-        {/* Mural com estética do site (glass, azuis, lilases) */}
-        <div className="glass rounded-2xl overflow-hidden border border-white/10">
+        {/* Mural */}
+        <div className="glass galaxy-panel galaxy-panel-nebula overflow-hidden border border-white/10">
           {/* Área do mural */}
           <div
             className="relative min-h-[320px] overflow-hidden"
@@ -278,14 +279,14 @@ export function MessagesSection({ rsvpVersion = 0 }: MessagesSectionProps) {
                     }}
                     placeholder="Escreva sua mensagem..."
                     rows={2}
-                    className="flex-1 min-h-[44px] max-h-[160px] resize-y bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-timeline text-white placeholder:text-white/30 focus:outline-none focus:border-[#3794CF]/60 transition-colors"
+                    className="flex-1 min-h-[44px] max-h-[160px] resize-y bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-timeline text-white placeholder:text-white/30 focus:outline-none focus:border-violet-500/60 transition-colors"
                   />
                   <button
                     type="button"
                     onClick={handleSend}
                     disabled={!text.trim() || sending}
                     className={`px-5 py-3 rounded-xl font-modern font-bold text-sm transition-all shrink-0 ${text.trim() && !sending
-                        ? 'bg-[#3794CF] text-white cursor-pointer hover:shadow-[0_0_20px_rgba(55,148,207,0.4)] hover:brightness-110'
+                        ? 'bg-violet-600 text-white cursor-pointer hover:shadow-[0_0_22px_rgba(124,58,237,0.4)] hover:brightness-110'
                         : 'bg-white/10 text-white/50 cursor-not-allowed'
                       }`}
                   >
@@ -300,9 +301,9 @@ export function MessagesSection({ rsvpVersion = 0 }: MessagesSectionProps) {
                       onChange={(e) => setShowNameOnWall(e.target.checked)}
                       className="peer sr-only"
                     />
-                    <span className="flex h-4 w-4 items-center justify-center rounded border border-white/20 bg-white/5 transition-colors group-hover:border-white/40 peer-checked:border-[#3794CF]/60 peer-checked:bg-[#3794CF]/25 peer-checked:[&>svg]:opacity-100">
+                    <span className="flex h-4 w-4 items-center justify-center rounded border border-white/20 bg-white/5 transition-colors group-hover:border-white/40 peer-checked:border-violet-500/60 peer-checked:bg-violet-600/25 peer-checked:[&>svg]:opacity-100">
                       <svg
-                        className="h-2.5 w-2.5 text-[#7BB1D9] opacity-0 transition-opacity"
+                        className="h-2.5 w-2.5 text-violet-300 opacity-0 transition-opacity"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -321,7 +322,7 @@ export function MessagesSection({ rsvpVersion = 0 }: MessagesSectionProps) {
                 <p className="text-white/60 text-sm font-timeline mb-2">
                   <a
                     href="#confirmar-presenca"
-                    className="text-[#7BB1D9] hover:text-[#3794CF] underline underline-offset-2 transition-colors"
+                    className="text-violet-300 hover:text-violet-400 underline underline-offset-2 transition-colors"
                   >
                     Confirme sua presença
                   </a>{' '}
