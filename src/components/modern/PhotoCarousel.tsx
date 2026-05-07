@@ -34,7 +34,7 @@ export function PhotoCarousel() {
       <div className="relative -mt-2">
         <div
           className="flex gap-8 w-max animate-marquee hover:[animation-play-state:paused] items-end"
-          style={{ animationDuration: "180s" }}
+          style={{ animationDuration: "50s" }}
         >
           {photos.map((src, i) => (
             <a

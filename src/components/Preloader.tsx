@@ -1,24 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { StarfieldBackground } from "./StarfieldBackground";
+import { preloadAll } from "@/lib/preloadAssets";
 
 interface Props {
   onComplete: () => void;
 }
 
-const INTRO_DURATION_MS = 3600;
+const MIN_INTRO_DURATION_MS = 1200;
+const POST_LOAD_HOLD_MS = 2000;
 const EXIT_DURATION_MS = 650;
 
 export default function Preloader({ onComplete }: Props) {
   const [isClosing, setIsClosing] = useState(false);
+  const didStartClose = useRef(false);
 
   useEffect(() => {
-    const intro = setTimeout(() => {
+    const startedAt = Date.now();
+    let cancelled = false;
+
+    const close = () => {
+      if (cancelled || didStartClose.current) return;
+      didStartClose.current = true;
       setIsClosing(true);
       setTimeout(onComplete, EXIT_DURATION_MS);
-    }, INTRO_DURATION_MS);
+    };
 
-    return () => clearTimeout(intro);
+    void preloadAll().finally(() => {
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, MIN_INTRO_DURATION_MS - elapsed);
+      window.setTimeout(close, remaining + POST_LOAD_HOLD_MS);
+    });
+
+    // Fallback: não travar a entrada se algo ficar pendurado
+    const hardTimeout = window.setTimeout(close, 12000);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(hardTimeout);
+    };
   }, [onComplete]);
 
   return (

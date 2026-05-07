@@ -63,7 +63,7 @@ export function Hero() {
           </span>
         </h1>
 
-        <p className="font-drawn text-2xl sm:text-5xl lg:text-7xl text-violet-100/90 mb-8 tracking-wide">
+        <p className="font-drawn text-4xl sm:text-6xl lg:text-7xl text-violet-100/90 mb-8 tracking-wide">
           XV
         </p>
 
@@ -107,14 +107,23 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-16 opacity-45"
+          className="mt-16"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <p className="font-modern text-xs mb-2 text-violet-200/80">
-            Confirma aqui embaixo!
-          </p>
-          <span className="text-2xl text-violet-200/80">↓</span>
+          <div className="inline-flex flex-col items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm shadow-[0_0_18px_rgba(167,139,250,0.08)]">
+            <p
+              className="font-mono text-[10px] tracking-[0.26em] uppercase bg-clip-text text-transparent opacity-90"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, rgba(233,213,255,0.9) 0%, rgba(196,181,253,0.82) 40%, rgba(167,139,250,0.78) 100%)",
+                textShadow: "0 0 18px rgba(167,139,250,0.14)",
+              }}
+            >
+              Confirma aqui embaixo
+            </p>
+            <span className="text-lg text-violet-200/70 leading-none">↓</span>
+          </div>
         </motion.div>
       </motion.div>
     </section>

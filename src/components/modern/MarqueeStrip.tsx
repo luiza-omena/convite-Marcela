@@ -4,7 +4,7 @@ export function MarqueeStrip() {
   const repeatedItems = Array.from({ length: 6 }, () => MARQUEE_ITEMS).flat();
 
   return (
-    <div className="overflow-hidden py-6 border-y border-white/[0.08]">
+    <div className="mt-6 overflow-hidden py-6 border-y border-white/[0.08]">
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
         {[0, 1].map((group) => (
           <div key={group} className="flex shrink-0 gap-12 pr-12">

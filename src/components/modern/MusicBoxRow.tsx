@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { assetUrl } from "@/lib/utils";
 
 const TRACKS = [
@@ -231,10 +231,12 @@ export function MusicBoxRow() {
         audio.currentTime = safeStart;
         setCurrentTime(safeStart);
       }
-    } catch {}
+    } catch {
+      void 0;
+    }
   };
 
-  const playCurrentAudio = async (forceStart = false) => {
+  const playCurrentAudio = useCallback(async (forceStart = false) => {
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -251,7 +253,7 @@ export function MusicBoxRow() {
       setIsPlaying(false);
       stopProgressAnimation();
     }
-  };
+  }, [currentTrack.startAt]);
 
   const pauseAudio = () => {
     const audio = audioRef.current;
@@ -364,7 +366,7 @@ export function MusicBoxRow() {
     if (shouldPlay) {
       void playCurrentAudio(true);
     }
-  }, [trackIndex]);
+  }, [playCurrentAudio, trackIndex]);
 
   useEffect(() => {
     return () => {
@@ -377,7 +379,7 @@ export function MusicBoxRow() {
       className={
         isExpanded
           ? "fixed inset-0 z-[9999] flex items-center justify-center px-3 py-4 bg-[#0f0a1e]/80 backdrop-blur-md"
-          : "py-6 px-4"
+          : "py-4 px-3 sm:px-4"
       }
     >
       <motion.div
@@ -387,7 +389,11 @@ export function MusicBoxRow() {
           repeat: isPlaying ? Infinity : 0,
           ease: "easeInOut",
         }}
-        className={isExpanded ? "w-full max-w-4xl mx-auto" : "max-w-lg mx-auto"}
+        className={
+          isExpanded
+            ? "w-full max-w-4xl mx-auto"
+            : "w-full max-w-[96vw] sm:max-w-2xl md:max-w-3xl mx-auto"
+        }
       >
         <div
           className="w-full overflow-hidden rounded-[1.6rem] border bg-white/95"
@@ -397,7 +403,7 @@ export function MusicBoxRow() {
           }}
         >
           <div
-            className="px-4 py-2.5 flex justify-end items-center gap-1.5"
+            className="px-4 py-2 flex justify-end items-center gap-1.5"
             style={{ background: theme.header }}
           >
             <button
@@ -429,14 +435,14 @@ export function MusicBoxRow() {
           </div>
 
           <div
-            className={isExpanded ? "p-5 sm:p-6 md:p-9" : "p-4 sm:p-5 md:p-6"}
+            className={isExpanded ? "p-5 sm:p-6 md:p-8" : "p-3.5 sm:p-4 md:p-5"}
             style={{ background: theme.panel }}
           >
             <div
               className={
                 isExpanded
-                  ? "flex flex-row items-center gap-4 sm:gap-5 md:gap-7 mb-5 md:mb-7 text-left"
-                  : "flex flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-4 md:mb-6 text-left"
+                  ? "flex flex-row items-center gap-4 sm:gap-5 md:gap-7 mb-4 md:mb-6 text-left"
+                  : "flex flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-3 md:mb-4 text-left"
               }
             >
               <img
@@ -445,7 +451,7 @@ export function MusicBoxRow() {
                 className={
                   isExpanded
                     ? "w-20 h-20 sm:w-24 sm:h-24 md:w-40 md:h-40 object-cover rounded-lg shadow-lg border-4 border-white shrink-0"
-                    : "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-cover rounded-lg shadow-lg border-4 border-white shrink-0"
+                    : "w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 object-cover rounded-lg shadow-lg border-4 border-white shrink-0"
                 }
               />
 
@@ -453,8 +459,8 @@ export function MusicBoxRow() {
                 <h2
                   className={
                     isExpanded
-                      ? "text-lg sm:text-xl md:text-4xl font-bold mb-0.5 md:mb-1 tracking-tight leading-tight"
-                      : "text-base sm:text-lg md:text-3xl font-bold mb-0.5 md:mb-1 tracking-tight leading-tight"
+                      ? "text-lg sm:text-xl md:text-4xl font-bold mb-0.5 tracking-tight leading-tight truncate"
+                      : "text-base sm:text-lg md:text-2xl font-bold mb-0.5 tracking-tight leading-tight truncate"
                   }
                   style={{
                     fontFamily: "monospace",
@@ -467,8 +473,8 @@ export function MusicBoxRow() {
                 <p
                   className={
                     isExpanded
-                      ? "text-sm sm:text-base md:text-2xl leading-tight"
-                      : "text-xs sm:text-sm md:text-xl leading-tight"
+                      ? "text-sm sm:text-base md:text-xl leading-tight truncate"
+                      : "text-xs sm:text-sm md:text-lg leading-tight truncate"
                   }
                   style={{
                     fontFamily: "monospace",
@@ -478,7 +484,7 @@ export function MusicBoxRow() {
                   {currentTrack.artist}
                 </p>
 
-                <p className="mt-1 md:mt-2 text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-violet-400/70">
+                <p className="mt-1 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-violet-400/70">
                   {trackIndex + 1} de {TRACKS.length}
                 </p>
               </div>
@@ -487,8 +493,8 @@ export function MusicBoxRow() {
             <div
               className={
                 isExpanded
-                  ? "mb-4 md:mb-6 h-12 sm:h-14 md:h-28 flex items-center justify-center gap-[3px] px-0.5 md:px-2"
-                  : "mb-4 md:mb-5 h-10 sm:h-12 md:h-20 flex items-center justify-center gap-[3px] px-0.5 md:px-2"
+                  ? "mb-4 md:mb-5 h-12 sm:h-14 md:h-24 flex items-center justify-center gap-[3px] px-0.5 md:px-2"
+                  : "mb-3 md:mb-4 h-8 sm:h-10 md:h-16 flex items-center justify-center gap-[3px] px-0.5 md:px-2"
               }
             >
               {waveformBars.map((height, i) => {
@@ -509,7 +515,7 @@ export function MusicBoxRow() {
               })}
             </div>
 
-            <div className="mb-4 md:mb-6 px-0.5 md:px-2">
+            <div className="mb-3 md:mb-4 px-0.5 md:px-2">
               <div className="relative h-5 md:h-6 flex items-center">
                 <div
                   className="absolute left-0 right-0 h-2 rounded-full"
@@ -546,7 +552,7 @@ export function MusicBoxRow() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-1.5 sm:gap-2 md:gap-3 flex-wrap">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-2 md:gap-3">
               <button
                 type="button"
                 onClick={() => jumpSeconds(-10)}
@@ -576,7 +582,7 @@ export function MusicBoxRow() {
               <button
                 type="button"
                 onClick={toggleAudio}
-                className="p-3 sm:p-3.5 md:p-5 rounded-xl shadow-md transition-all hover:shadow-lg border text-white"
+                className="p-3 sm:p-3.5 md:p-4 rounded-xl shadow-md transition-all hover:shadow-lg border text-white"
                 style={{
                   background: theme.playButton,
                   borderColor: theme.buttonBorder,
@@ -584,9 +590,9 @@ export function MusicBoxRow() {
                 aria-label={isPlaying ? "Pausar música" : "Tocar música"}
               >
                 {isPlaying ? (
-                  <Pause className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                  <Pause className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
                 ) : (
-                  <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                  <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
                 )}
               </button>
 

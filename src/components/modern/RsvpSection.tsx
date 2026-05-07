@@ -65,7 +65,7 @@ export function RsvpSection({ onConfirm }: RsvpSectionProps) {
                 <p className="opacity-70 mb-6 leading-relaxed">
                   Se mudar de ideia, entre em contato comigo pelo{" "}
                   <a
-                    href="https://wa.me/5581986889461"
+                    href="https://wa.me/5583988802845"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-violet-300 hover:text-violet-400 underline underline-offset-2 transition-colors"
@@ -84,7 +84,7 @@ export function RsvpSection({ onConfirm }: RsvpSectionProps) {
                 <p className="opacity-70 mb-6 leading-relaxed">
                   Se precisar alterar algo, entre em contato comigo pelo{" "}
                   <a
-                    href="https://wa.me/5581986889461"
+                    href="https://wa.me/5583988802845"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-violet-300 hover:text-violet-400 underline underline-offset-2 transition-colors"

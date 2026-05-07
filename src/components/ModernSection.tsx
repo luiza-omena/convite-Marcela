@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Timeline from "./Timeline";
 import MapSection from "./MapSection";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ConfettiOverlay } from "./modern/ConfettiOverlay";
 import { RsvpSection } from "./modern/RsvpSection";
 import { MarqueeStrip } from "./modern/MarqueeStrip";
@@ -10,12 +10,15 @@ import { MobileDecorationsSection } from "./modern/MobileDecorationsSection";
 import { Footer } from "./modern/Footer";
 import { MessagesSection } from "./modern/MessagesSection";
 import { PhotoCarousel } from "./modern/PhotoCarousel";
-import { MusicBoxRow } from "./modern/MusicBoxRow";
+import { MusicBoxRow } from "@/components/modern/MusicBoxRow";
 import { StarfieldBackground } from "./StarfieldBackground";
+import { WordSearchSection } from "./modern/WordSearchSection";
 
 export default function ModernSection() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [rsvpVersion, setRsvpVersion] = useState(0);
+  const didNudgeRef = useRef(false);
+  const didScrollDownRef = useRef(false);
 
   const launchConfetti = useCallback(() => {
     setShowConfetti(true);
@@ -26,6 +29,32 @@ export default function ModernSection() {
     launchConfetti();
     setRsvpVersion((v) => v + 1);
   }, [launchConfetti]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (sessionStorage.getItem("scroll-nudge-v1") === "1") return;
+
+    const onScroll = () => {
+      if (window.scrollY > 80) didScrollDownRef.current = true;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const t = window.setTimeout(() => {
+      if (didNudgeRef.current) return;
+      if (didScrollDownRef.current) return;
+      if (window.scrollY > 40) return;
+
+      didNudgeRef.current = true;
+      sessionStorage.setItem("scroll-nudge-v1", "1");
+      window.scrollBy({ top: 140, behavior: "smooth" });
+    }, 30_000);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(t);
+    };
+  }, []);
 
   return (
     <motion.div
@@ -66,6 +95,8 @@ export default function ModernSection() {
           <MarqueeStrip />
 
           <Timeline />
+
+          <WordSearchSection />
 
           <MobileDecorationsSection placement="bottom" />
 

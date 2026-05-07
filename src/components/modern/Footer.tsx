@@ -11,7 +11,7 @@ export function Footer() {
           WebkitTextFillColor: "transparent",
         }}
       >
-        06.05.26
+        06.06.26
       </div>
       <p className="font-mono text-[11px] tracking-[3px] uppercase opacity-30">
         Feito com amor e carinho · © 2026 Marcela

@@ -7,62 +7,62 @@ const milestones = [
     year: '2011',
     title: 'Foi aqui que tudo começou',
     description: 'cheguei ao mundo pronta pra viver com muita intensidade.',
-    image: assetUrl('/timeline/comeco.jpeg'),
+    image: assetUrl('/timeline/marcela1.jpeg'),
   },
   {
     year: '',
     title: 'Curiosa desde sempre',
     description: 'observando tudo e aprontando um pouquinho também.',
-    image: assetUrl('/timeline/curiosa.jpeg'),
+    image: assetUrl('/timeline/marcela2.jpeg'),
   },
   {
     year: '',
     title: 'Chegaram meus irmãos',
     description: 'e meu mundo ficou ainda mais completo',
-    image: assetUrl('/timeline/irmaos.jpeg'),
+    image: assetUrl('/timeline/marcela3.jpeg'),
   },
   {
     year: '',
     title: 'Nosso maior presente',
     description: 'ter você como a melhor mãe do mundo',
-    image: assetUrl('/timeline/mae.jpeg'),
+    image: assetUrl('/timeline/marcela4.jpeg'),
   },
   {
     year: '',
     title: 'Tentei carreira de bailarina',
     description: 'e até que eu tava arrasando',
-    image: assetUrl('/timeline/bailarina.jpeg'),
+    image: assetUrl('/timeline/marcela5.jpeg'),
   },
   {
     year: '',
     title: 'Minha base, meu tudo',
     description: 'com eles, qualquer momento vira festa',
-    image: assetUrl('/timeline/base.jpeg'),
+    image: assetUrl('/timeline/marcela6.jpeg'),
   },
   {
     year: '',
     title: 'Curtindo e amando cada momento',
     description: 'com quem faz tudo ser ainda melhor',
-    image: assetUrl('/timeline/curtindo.jpeg'),
+    image: assetUrl('/timeline/marcela7.jpeg'),
   },
   {
     year: '',
     title: 'Colecionando conquistas',
     description: 'porque sonhar grande sempre fez parte de mim',
-    image: assetUrl('/timeline/conquistas.jpeg'),
+    image: assetUrl('/timeline/marcela8.jpeg'),
   },
   {
     year: '',
     title: 'Entre notas e sentimentos',
     description: 'aprendi a transformar emoção em música',
-    image: assetUrl('/timeline/notas.jpeg'),
+    image: assetUrl('/timeline/marcela9.jpeg'),
   },
 
   {
     year: '2026',
     title: 'E agora… estou prestes a completar 15 anos',
     description: 'pronta pra viver tudo que ainda está por vir',
-    image: assetUrl('/timeline/15.jpeg'),
+    image: assetUrl('/timeline/marcela10.jpeg'),
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Timeline() {
         className="text-3xl sm:text-4xl font-bold text-center mb-16 font-timeline bg-clip-text text-transparent"
         style={{ backgroundImage: 'linear-gradient(to right, #fcd34d, #a78bfa, #818cf8)' }}
       >
-        Trajetória da Marcela
+        Trajetória de Ma
       </motion.h2>
 
       <div className="relative">

@@ -27,16 +27,16 @@ const RETRO_GALLERY_IMAGES = [
 
 /** Timeline (evitar flash ao scroll) */
 const TIMELINE_IMAGES = [
-  "/timeline/nasceu.png",
-  "/timeline/andar.png",
-  "/timeline/mae.png",
-  "/timeline/animais.png",
-  "/timeline/modelo.png",
-  "/timeline/pessoas.png",
-  "/timeline/curso.png",
-  "/timeline/novos_amigos.png",
-  "/timeline/amor.png",
-  "/timeline/2026.png",
+  "/timeline/marcela1.jpeg",
+  "/timeline/marcela2.jpeg",
+  "/timeline/marcela3.jpeg",
+  "/timeline/marcela4.jpeg",
+  "/timeline/marcela5.jpeg",
+  "/timeline/marcela6.jpeg",
+  "/timeline/marcela7.jpeg",
+  "/timeline/marcela8.jpeg",
+  "/timeline/marcela9.jpeg",
+  "/timeline/marcela10.jpeg",
 ].map(assetUrl);
 
 const ALL_IMAGE_URLS = [
@@ -99,7 +99,28 @@ export function preloadMap(): Promise<void> {
   });
 }
 
+export async function preloadFonts(): Promise<void> {
+  if (typeof document === "undefined" || !("fonts" in document)) return;
+  try {
+    // Garante que o browser comece a buscar as famílias usadas no layout
+    await Promise.allSettled([
+      document.fonts.load('400 1em "DM Sans"'),
+      document.fonts.load('600 1em "DM Sans"'),
+      document.fonts.load('400 1em "Space Grotesk"'),
+      document.fonts.load('600 1em "Space Grotesk"'),
+      document.fonts.load('400 1em "VT323"'),
+      document.fonts.load('400 1em "Cinzel Decorative"'),
+      document.fonts.load('700 1em "Cinzel Decorative"'),
+    ]);
+    await document.fonts.ready;
+  } catch {
+    // Não travar a entrada se algo falhar (ex.: bloqueio de rede)
+  }
+}
+
 /** Precarrega todas as imagens e o iframe do mapa. Resolve quando tudo estiver pronto. */
 export function preloadAll(): Promise<void> {
-  return Promise.all([preloadAllImages(), preloadMap()]).then(() => {});
+  return Promise.all([preloadAllImages(), preloadMap(), preloadFonts()]).then(
+    () => {},
+  );
 }
