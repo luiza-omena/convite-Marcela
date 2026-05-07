@@ -52,7 +52,7 @@ export function RsvpSection({ onConfirm }: RsvpSectionProps) {
             Confirme presença
           </p>
           <h2 className="font-modern text-3xl sm:text-4xl font-bold mb-3 leading-tight">
-            Vamo <span className="text-violet-400" style={{ textShadow: '0 0 28px rgba(167,139,250,0.45)' }}>comemorar</span>?
+            Vamos <span className="text-violet-400" style={{ textShadow: '0 0 28px rgba(167,139,250,0.45)' }}>comemorar</span>?
           </h2>
           <div className="galaxy-divider mb-8" aria-hidden />
 
@@ -108,7 +108,7 @@ export function RsvpSection({ onConfirm }: RsvpSectionProps) {
           Confirme presença
         </p>
         <h2 className="font-modern text-3xl sm:text-4xl font-bold mb-3 leading-tight">
-          Vamo <span className="text-violet-400" style={{ textShadow: '0 0 28px rgba(167,139,250,0.45)' }}>comemorar</span>?
+          Vamos <span className="text-violet-400" style={{ textShadow: '0 0 28px rgba(167,139,250,0.45)' }}>comemorar</span>?
         </h2>
         <div className="galaxy-divider mb-8" aria-hidden />
 
